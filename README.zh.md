@@ -69,12 +69,11 @@ conda install -c conda-forge root
 
 
 
-对'tut07_initialization.ipynb'的说明
+# 对'tut07_initialization.ipynb'的说明
    ```
 `tut07_initialization.ipynb` 演示了现代 C++11 中对象初始化的不同方法和技术，包括使用 `()` 和 `{}` 进行初始化的区别、POD（Plain Old Data）对象的初始化方式、以及通过初始化列表（initializer list）动态存储数据的用法。此教程适合希望深入了解 C++ 初始化机制的开发者。
-
-## 教程内容：
 ```
+
 
 # 一、C++11中的对象初始化
 
