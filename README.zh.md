@@ -22,17 +22,17 @@
 git clone https://github.com/qqx123456/starterkitmoderncpp.git
 cd starterkitmoderncpp
 
-### 2.安装root框架
+```2.安装root框架
 如果您没有安装ROOT框架，请参考[官方文档](https://root.cern/install/)进行安装。
 确保 root 命令可以在终端运行。
 
-### 3. 安装 Jupyter Notebook
+    3. 安装 Jupyter Notebook
 如果您没有安装 Jupyter Notebook，请参考[官方文档](https://jupyter.org/install)进行安装。
 可以使用以下命令安装：
 ```bash
 pip install notebook
 ```
-### 4. 安装 ROOT C++ 内核
+     4. 安装 ROOT C++ 内核
 如果您没有安装 ROOT C++ 内核，请参考[官方文档](https://root.cern/install/all-in-one/)进行安装。
 运行以下命令，为Jupyter Notebook添加ROOT C++ 内核：
 conda install -c conda-forge root
@@ -157,7 +157,7 @@ SimpleEvent cb2{5., 10.};    // 缩小。由于从 double 类型转换为 int �
 SimpleEvent cb3{15, 20};
 
 
-## 二、POD对象
+二、POD对象
 普通旧数据结构（POD）仅由一组属性组成——不适用面向对象原则（如封装、继承等）。在C++中，POD对象由结构体表示。如果对象所持有的数据量有限且功能有限，POD对象可能会很有用。
 
 
@@ -172,7 +172,7 @@ struct Style {  // 定义一个名为 Style 的结构体，用于存储样式信
         object->SetLineColor(fColor);   // 调用对象的 SetLineColor 方法，设置线条颜色为 fColor
     }
 };
-
+```
 
 这个结构体看起来熟悉吗？
 使用圆括号 () 构造 POD 对象
@@ -185,7 +185,7 @@ Style s2{kBlue, 25};    // Style s2{kBlue, 25}; 中，kBlue 是颜色值，25 �
 
 
 
-## 三、初始化列表
+三、初始化列表
 在上面的例子中，构造函数使用花括号被调用，并且正好有两个参数。如果需要存储的参数数量应该是动态的，那该怎么办？
 
 ```cpp
