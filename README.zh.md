@@ -172,7 +172,6 @@ struct Style {  // 定义一个名为 Style 的结构体，用于存储样式信
         object->SetLineColor(fColor);   // 调用对象的 SetLineColor 方法，设置线条颜色为 fColor
     }
 };
-```
 
 这个结构体看起来熟悉吗？
 使用圆括号 () 构造 POD 对象
@@ -186,6 +185,7 @@ Style s2{kBlue, 25};    // Style s2{kBlue, 25}; 中，kBlue 是颜色值，25 �
 
 
 三、初始化列表
+
 在上面的例子中，构造函数使用花括号被调用，并且正好有两个参数。如果需要存储的参数数量应该是动态的，那该怎么办？
 
 ```cpp
@@ -215,6 +215,7 @@ container<int> test2 = {6,7,8,9,10}; // 使用等号和大括号初始化 contai
 std::cout << "Container1: " << test1 << "; Container2: " << test2 << std::endl; // 打印 test1 和 test2 的内容
 
 初始化列表总是包含相同类型的对象！
+```
 
 
 
