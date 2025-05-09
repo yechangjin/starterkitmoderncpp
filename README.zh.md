@@ -31,11 +31,12 @@ cd starterkitmoderncpp
 可以使用以下命令安装：
 ```bash
 pip install notebook
-```
-     4. 安装 ROOT C++ 内核
+
+    4. 安装 ROOT C++ 内核
 如果您没有安装 ROOT C++ 内核，请参考[官方文档](https://root.cern/install/all-in-one/)进行安装。
 运行以下命令，为Jupyter Notebook添加ROOT C++ 内核：
 conda install -c conda-forge root
+   ```
 
 
 ### 运行项目
@@ -68,8 +69,8 @@ conda install -c conda-forge root
 
 
 
-## 对'tut07_initialization.ipynb'的说明
-
+对'tut07_initialization.ipynb'的说明
+   ```
 `tut07_initialization.ipynb` 演示了现代 C++11 中对象初始化的不同方法和技术，包括使用 `()` 和 `{}` 进行初始化的区别、POD（Plain Old Data）对象的初始化方式、以及通过初始化列表（initializer list）动态存储数据的用法。此教程适合希望深入了解 C++ 初始化机制的开发者。
 
 ## 教程内容：
@@ -110,7 +111,7 @@ SimpleEvent cb1{10, 0.5};    // 大括号，合法
 ```
 
 
-###原文档解析：
+原文档解析：
 # C++ 类 `SimpleEvent` 代码解析
 
 ## 类定义
@@ -155,6 +156,7 @@ SimpleEvent cb1{10, 0.5};
 SimpleEvent cb2{5., 10.};    // 缩小。由于从 double 类型转换为 int 类型导致精度损失。
 // “那么相反方向呢：隐式转换中精度“提升”。
 SimpleEvent cb3{15, 20};
+```
 
 
 二、POD对象
@@ -182,6 +184,7 @@ Style s1(kRed, 24);    // Style s1(kRed, 24); 中，kRed 是颜色值，24 是�
 Style s2{kBlue, 25};    // Style s2{kBlue, 25}; 中，kBlue 是颜色值，25 是标记样式值
 // 这种方式更严格，可能防止隐式类型转换导致的精度损失
 
+```
 
 
 三、初始化列表
