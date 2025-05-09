@@ -275,39 +275,3 @@ std::cout << "Container1: " << test1 << "; Container2: " << test2 << std::endl; 
 
 
 
-
-
-### 1. **对象初始化的方式**
-- 使用 `()` 和 `{}` 两种语法初始化对象。
-- 演示了使用 `()` 和 `{}` 的场景及其限制，例如窄化（narrowing）转换问题。
-
-### 2. **POD 对象的初始化**
-- 定义和初始化 POD（Plain Old Data）对象。
-- 比较使用 `()` 和 `{}` 初始化 POD 对象的差异。
-
-### 3. **初始化列表**
-- 使用初始化列表（`initializer_list`）动态存储数据。
-- 实现了一个容器类 `container`，支持通过初始化列表传递多个参数。
-- 演示了如何打印容器中的内容。
-
----
-
-## 环境要求 (Requirements)
-
-在运行此教程之前，请确保您的系统已安装以下工具和依赖：
-- **操作系统**: Windows, macOS, 或 Linux
-- **编译器**: 支持 C++11 或更高版本
-- **工具链**:
-  - [ROOT 框架](https://root.cern/)（可选，用于科学计算）
-  - [Jupyter Notebook](https://jupyter.org/install)（用于运行交互式教程）
-  - Python 3.8 或更高版本
-
----
-
-## 使用方法 (Usage)
-
-1. **克隆项目**
-   将项目克隆到本地：
-   ```bash
-   git clone https://github.com/qqx123456/starterkitmoderncpp.git
-   cd starterkitmoderncpp
