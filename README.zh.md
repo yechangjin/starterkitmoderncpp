@@ -1,3 +1,4 @@
+<!--by 苏国权-->
 # tut07_initialization
 
 # 如何运行这个项目
@@ -220,7 +221,7 @@ std::cout << "Container1: " << test1 << "; Container2: " << test2 << std::endl; 
 
 初始化列表总是包含相同类型的对象！
 ```
-
+<!--by 苏国权-->
 
 
 
