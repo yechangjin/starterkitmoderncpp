@@ -77,7 +77,6 @@ conda install -c conda-forge root
 
 `tut07_initialization.ipynb` demonstrates various methods and techniques for object initialization in modern C++11, including the differences between initialization with `()` and `{}`, the initialization methods for POD (Plain Old Data) objects, and the use of initializer lists to dynamically store data. This tutorial is suitable for developers who wish to gain an in-depth understanding of C++ initialization mechanisms.
 
-## Tutorial Content:
 
 
 # I. Object Initialization in C++11
