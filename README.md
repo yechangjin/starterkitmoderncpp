@@ -60,23 +60,6 @@ conda install -c conda-forge root
 
 
 
-### Run the Project
-1. Start Jupyter Notebook:
-   ```bash
-   jupyter notebook
-   ```
-2. Open the project file
-   Open Jupyter Notebook in the browser:
-   Find and open the `.ipynb` file in the project, and click to open. For example: `tut07_initialization.ipynb`.
-
-3. Select the kernel
-   In the top menu of Jupyter Notebook, select Kernel, then select `Change Kernel`, and choose the `Root C++` kernel.
-
-4. Run the code cells in order
-   In the Notebook, run each code cell in order, and observe the results.
-
-
-
 ## III. Precautions
 1. Check Dependencies
    - Ensure that all dependencies are installed, such as the ROOT framework, Jupyter Notebook, Python, etc.
@@ -103,7 +86,37 @@ conda install -c conda-forge root
 
 Objects can be initialized with normal parentheses `()` and curly braces `{}`. Curly braces have some restrictions that may help make the code more robust.
 
-Original code explanation:
+## Core Differences
+- **Parentheses `()`**  
+  Allows implicit type conversion, but may lead to narrowing conversions (e.g., `double` → `int` causing precision loss).
+- **Braces `{}`**  
+  Strictly prohibits narrowing conversions, enhancing code robustness.
+
+## Example Code
+```cpp
+class SimpleEvent {
+    int fhtrack;     // track code
+    double fvz;      // vertex coordinate
+
+public:
+    SimpleEvent(int ntrack, double vz) : fhtrack(ntrack), fvz(vz) {}
+};
+
+// Legal initialization
+SimpleEvent nb1(10, 0.5);    // Parentheses, implicit int → double
+SimpleEvent cb1{10, 0.5};    // Braces, legal
+
+// Illegal initialization (narrowing conversion)
+// SimpleEvent nb2(5.0, 10);  // Warning: double → int precision loss (compiler might pass)
+// SimpleEvent cb2{5.0, 10};  // Error: braces prohibit narrowing (compilation fails)
+
+Summary of rules
+1. Prefer using {} for initialization to avoid unexpected narrowing.
+2. If implicit conversion is needed, use () for initialization, but ensure type compatibility is explicitly compatible.
+
+
+
+Original document analysis:
 # C++ Class `SimpleEvent` Code Explanation
 
 ## Class Definition
