@@ -1,3 +1,4 @@
+<!--by suguouquan（苏国权）-->
 # tut07_initialization
 
 # How to Run This Project
@@ -226,6 +227,8 @@ Container<int> test2 = {6, 7, 8, 9, 10}; // Initializes Container object test2 w
 std::cout << "Container1: " << test1 << "; Container2: " << test2 << std::endl; // Prints contents of test1 and test2
 
 Initializer lists must always contain objects of the same type!  
+
+<!--by suguouquan（苏国权）-->
 
 
 
