@@ -80,7 +80,37 @@ conda install -c conda-forge root
 
 对象可以使用普通的()和花括号{}进行初始化。花括号有一些限制，这可能有助于使代码更加健壮。
 
-原代码解析：
+## 核心区别
+- **圆括号 `()`**  
+  允许隐式类型转换，但可能导致窄化转换（如 `double` → `int` 导致精度丢失）。
+- **大括号 `{}`**  
+  严格禁止窄化转换，增强代码健壮性。
+
+## 示例代码
+```cpp
+class SimpleEvent {
+    int fhtrack;     //跟踪代码
+    double fvz;      //顶点坐标
+
+public:
+    SimpleEvent(int ntrack, double vz) : fhtrack(ntrack), fvz(vz) {}
+};
+
+// 合法初始化
+SimpleEvent nb1(10, 0.5);    // 圆括号，隐式 int → double
+SimpleEvent cb1{10, 0.5};    // 大括号，合法
+
+// 非法初始化（窄化转换）
+// SimpleEvent nb2(5.0, 10);  // 警告：double → int 精度丢失（编译器可能通过）
+// SimpleEvent cb2{5.0, 10};  // 错误：大括号禁止窄化（编译失败）
+
+规则总结
+1.优先使用 {} 初始化以避免意外窄化。
+2.若需隐式转换，使用 （） 进行初始化，但需明确类型兼容性。
+
+
+
+原文档解析：
 # C++ 类 `SimpleEvent` 代码解析
 
 ## 类定义
@@ -206,33 +236,7 @@ std::cout << "Container1: " << test1 << "; Container2: " << test2 << std::endl; 
 
 
 
-## 核心区别
-- **圆括号 `()`**  
-  允许隐式类型转换，但可能导致窄化转换（如 `double` → `int` 导致精度丢失）。
-- **大括号 `{}`**  
-  严格禁止窄化转换，增强代码健壮性。
 
-## 示例代码
-```cpp
-class SimpleEvent {
-    int fhtrack;     //跟踪代码
-    double fvz;      //顶点坐标
-
-public:
-    SimpleEvent(int ntrack, double vz) : fhtrack(ntrack), fvz(vz) {}
-};
-
-// 合法初始化
-SimpleEvent nb1(10, 0.5);    // 圆括号，隐式 int → double
-SimpleEvent cb1{10, 0.5};    // 大括号，合法
-
-// 非法初始化（窄化转换）
-// SimpleEvent nb2(5.0, 10);  // 警告：double → int 精度丢失（编译器可能通过）
-// SimpleEvent cb2{5.0, 10};  // 错误：大括号禁止窄化（编译失败）
-
-规则总结
-1.优先使用 {} 初始化以避免意外窄化。
-2.若需隐式转换，使用 （） 进行初始化，但需明确类型兼容性。
 
 
 
