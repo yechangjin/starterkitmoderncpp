@@ -1,0 +1,95 @@
+ROOT 绘图样式模板项目
+通过通用lambda实现ROOT图形对象的统一样式管理，支持直方图（TH1）和曲线图（TGraph）的快速配置。
+项目特点
+使用C++14通用lambda实现样式闭包
+
+支持同时配置直方图（TH1）和曲线图（TGraph）
+
+可扩展的样式模板设计
+
+自动化绘图流程封装
+
+快速开始
+环境要求
+ROOT 6.28+ (需支持C++14)
+
+Jupyter Notebook (可选)
+
+    配置环境
+下载 ROOT Windows 版本：
+访问 ROOT 下载页面
+https://root.cern/install/all_releases/（选择适合你系统的最新版本（我下载的是版本 6.36.00-rc1 - 2025-04-23）
+[!root的下载图片](root下载.png)
+安装好root后，配置环境变量（PATH）在cmd中输入
+set ROOTSYS=C:\root\root_v6.34.08 # 替换为你的安装路径
+set PATH=%ROOTSYS%\bin;%PATH%
+[！root加入系统变量](root加入系统变量.png)
+或者自己手动添加
+[加入系统变量](加入系统变量.png)
+[加入用户变量](加入用户变量.png)
+Jupyter Notebook的安装方法：
+访问anaconda官网下载Anaconda，安装后
+创建一个新环境，并安装jupyter notebook
+conda create -n myenv python=3.9
+conda activate myenv
+conda install jupyter
+
+运行代码
+启动ROOT环境：
+
+bash
+root
+在ROOT交互式环境中执行代码：
+
+cpp
+// 创建样式闭包
+auto createStyle = [](int color, int marker) {
+    return [=](auto& obj) {
+        obj.SetMarkerColor(color);
+        obj.SetLineColor(color);
+        obj.SetMarkerStyle(marker);
+        obj.SetMarkerSize(1.5);
+        if constexpr (std::is_base_of_v<TH1, std::decay_t<decltype(obj)>>) {
+            obj.SetFillColorAlpha(color, 0.3);
+        }
+    };
+};
+
+// 创建具体样式
+auto graphStyle = createStyle(kRed, 24);
+auto histoStyle = createStyle(kBlue, 25);
+
+// 应用样式
+graphStyle(*testgraph);
+histoStyle(*testhisto);
+
+// 绘制图形
+TCanvas *c1 = new TCanvas("c1", "Plot Demo", 800, 600);
+testhisto->Draw("hist");
+testgraph->Draw("P same");
+c1->Update();
+或在Jupyter Notebook中直接运行.ipynb文件
+在Jupyter Notebook切换到root c++内核
+[切换内核](切换内核.png)
+然后运行代码
+    项目结构
+starterkitmoderncpp-master/
+data/ #数据文件
+tut01_sharedptr.ipynb
+tut02_filereader.ipynb
+tut03_findhists.ipynb
+tut04_periodcomparison.ipynb
+tut05_genericstyles.ipynb
+tut06_leadingjet.ipynb
+tut07_initialization.ipynb
+tut08_rdataframe.ipynb
+    功能说明
+样式闭包
+通过嵌套lambda实现样式配置的工厂函数，支持颜色和标记的灵活配置。
+
+类型自适应
+使用if constexpr自动识别对象类型（直方图/曲线图），进行差异化样式设置。
+
+统一接口
+为不同图形对象提供统一的样式配置接口，减少代码重复。
+<by--梁宏军>

@@ -1,0 +1,109 @@
+# ROOT Plot Style Template Project  
+
+A unified style management system for ROOT graphical objects using generic lambdas, enabling quick configuration for histograms (TH1) and graphs (TGraph).  
+
+## Features  
+- Uses C++14 generic lambdas for style closures  
+- Supports simultaneous configuration for histograms (TH1) and graphs (TGraph)  
+- Extensible style template design  
+- Automated plotting process encapsulation  
+
+## Quick Start  
+
+### Requirements  
+- ROOT 6.28+ (requires C++14 support)  
+- Jupyter Notebook (optional)  
+
+### Environment Setup  
+1. **Download ROOT for Windows**:  
+   Visit the ROOT download page:  
+   [https://root.cern/install/all_releases/](https://root.cern/install/all_releases/)  
+   (Select the latest version suitable for your system. The example uses version 6.36.00-rc1 - 2025-04-23.)  
+   ![ROOT Download](root_download.png)  
+
+2. **Configure Environment Variables (PATH)**:  
+   In CMD, run:  
+   ```cmd
+   set ROOTSYS=C:\root\root_v6.34.08  # Replace with your installation path
+   set PATH=%ROOTSYS%\bin;%PATH%
+   ```  
+   ![ROOT Added to System Variables](root_system_variables.png)  
+   Alternatively, manually add the variables:  
+   ![Add to System Variables](system_variables.png)  
+   ![Add to User Variables](user_variables.png)  
+
+3. **Install Jupyter Notebook**:  
+   Download Anaconda from the official website, install it, and then create a new environment:  
+   ```bash
+   conda create -n myenv python=3.9
+   conda activate myenv
+   conda install jupyter
+   ```
+
+### Running the Code  
+1. **Start the ROOT Environment**:  
+   ```bash
+   root
+   ```  
+
+2. **Execute Code in the ROOT Interactive Environment**:  
+   ```cpp
+   // Create style closure
+   auto createStyle = [](int color, int marker) {
+       return [=](auto& obj) {
+           obj.SetMarkerColor(color);
+           obj.SetLineColor(color);
+           obj.SetMarkerStyle(marker);
+           obj.SetMarkerSize(1.5);
+           if constexpr (std::is_base_of_v<TH1, std::decay_t<decltype(obj)>>) {
+               obj.SetFillColorAlpha(color, 0.3);
+           }
+       };
+   };
+
+   // Create specific styles
+   auto graphStyle = createStyle(kRed, 24);
+   auto histoStyle = createStyle(kBlue, 25);
+
+   // Apply styles
+   graphStyle(*testgraph);
+   histoStyle(*testhisto);
+
+   // Draw the plot
+   TCanvas *c1 = new TCanvas("c1", "Plot Demo", 800, 600);
+   testhisto->Draw("hist");
+   testgraph->Draw("P same");
+   c1->Update();
+   ```  
+
+3. **Or Run Directly in Jupyter Notebook**:  
+   Switch to the ROOT C++ kernel in Jupyter Notebook:  
+   ![Switch Kernel](switch_kernel.png)  
+   Then execute the code.  
+
+### Project Structure  
+```
+starterkitmoderncpp-master/
+data/ #数据文件
+tut01_sharedptr.ipynb
+tut02_filereader.ipynb
+tut03_findhists.ipynb
+tut04_periodcomparison.ipynb
+tut05_genericstyles.ipynb
+tut06_leadingjet.ipynb
+tut07_initialization.ipynb
+tut08_rdataframe.ipynb
+```  
+
+## Functionality  
+
+### Style Closures  
+Nested lambdas implement factory functions for style configuration, supporting flexible color and marker settings.  
+
+### Type Adaptation  
+Uses `if constexpr` to automatically identify object types (histogram/graph) and apply differentiated styling.  
+
+### Unified Interface  
+Provides a consistent style configuration interface for different graphical objects, reducing code duplication.  
+
+<by--Liang Hongjun>
